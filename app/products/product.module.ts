@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 
+
+import { ProductDetailGuard } from './product-guard.service';
 import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
-import { ProductDetailGuard } from './product-guard.service';
+
 import { SharedModule } from '../shared/shared.module';
 
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
+import { ProductRoutingModule  } from '../product-routing.module';
 
 
 @NgModule({
-  declarations: [
-    ProductListComponent,
-    ProductDetailComponent,
-    ProductFilterPipe
-  ],
   imports: [
     SharedModule,
-    RouterModule.forChild([
-      { path: 'products', component: ProductListComponent },
-      { path: 'product/:id',
-        canActivate: [ ProductDetailGuard],
-        component: ProductDetailComponent
-      }
-    ])
+    ProductRoutingModule
+  ],
+  declarations: [
+    ProductFilterPipe,
+    ProductListComponent,
+    ProductDetailComponent
   ],
   providers: [
     ProductService,
